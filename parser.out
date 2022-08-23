@@ -1,0 +1,519 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> stmt
+Rule 1     stmt -> assign
+Rule 2     stmt -> declare
+Rule 3     stmt -> binop
+Rule 4     declare -> var id
+Rule 5     declare -> var assign
+Rule 6     assign -> id = term
+Rule 7     assign -> id = str
+Rule 8     binop -> term literal term
+Rule 9     binop -> term exp term
+Rule 10    binop -> str + str
+Rule 11    term -> id
+Rule 12    term -> num
+Rule 13    term -> binop
+Rule 14    literal -> +
+Rule 15    literal -> -
+Rule 16    literal -> *
+Rule 17    literal -> /
+Rule 18    id -> ID
+Rule 19    num -> NUM
+Rule 20    exp -> EXP
+Rule 21    str -> STR
+Rule 22    var -> VAR
+
+Terminals, with rules where they appear
+
+*                    : 16
++                    : 10 14
+-                    : 15
+/                    : 17
+=                    : 6 7
+EXP                  : 20
+ID                   : 18
+NUM                  : 19
+STR                  : 21
+VAR                  : 22
+error                : 
+
+Nonterminals, with rules where they appear
+
+assign               : 1 5
+binop                : 3 13
+declare              : 2
+exp                  : 9
+id                   : 4 6 7 11
+literal              : 8
+num                  : 12
+stmt                 : 0
+str                  : 7 10 10
+term                 : 6 8 8 9 9
+var                  : 4 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . stmt
+    (1) stmt -> . assign
+    (2) stmt -> . declare
+    (3) stmt -> . binop
+    (6) assign -> . id = term
+    (7) assign -> . id = str
+    (4) declare -> . var id
+    (5) declare -> . var assign
+    (8) binop -> . term literal term
+    (9) binop -> . term exp term
+    (10) binop -> . str + str
+    (18) id -> . ID
+    (22) var -> . VAR
+    (11) term -> . id
+    (12) term -> . num
+    (13) term -> . binop
+    (21) str -> . STR
+    (19) num -> . NUM
+
+    ID              shift and go to state 11
+    VAR             shift and go to state 12
+    STR             shift and go to state 3
+    NUM             shift and go to state 10
+
+    term                           shift and go to state 1
+    binop                          shift and go to state 2
+    stmt                           shift and go to state 4
+    assign                         shift and go to state 5
+    var                            shift and go to state 6
+    num                            shift and go to state 7
+    str                            shift and go to state 8
+    declare                        shift and go to state 9
+    id                             shift and go to state 13
+
+state 1
+
+    (8) binop -> term . literal term
+    (9) binop -> term . exp term
+    (14) literal -> . +
+    (15) literal -> . -
+    (16) literal -> . *
+    (17) literal -> . /
+    (20) exp -> . EXP
+
+    +               shift and go to state 15
+    -               shift and go to state 17
+    *               shift and go to state 16
+    /               shift and go to state 18
+    EXP             shift and go to state 14
+
+    literal                        shift and go to state 19
+    exp                            shift and go to state 20
+
+state 2
+
+    (3) stmt -> binop .
+    (13) term -> binop .
+
+    $end            reduce using rule 3 (stmt -> binop .)
+    +               reduce using rule 13 (term -> binop .)
+    -               reduce using rule 13 (term -> binop .)
+    *               reduce using rule 13 (term -> binop .)
+    /               reduce using rule 13 (term -> binop .)
+    EXP             reduce using rule 13 (term -> binop .)
+
+
+state 3
+
+    (21) str -> STR .
+
+    +               reduce using rule 21 (str -> STR .)
+    $end            reduce using rule 21 (str -> STR .)
+    -               reduce using rule 21 (str -> STR .)
+    *               reduce using rule 21 (str -> STR .)
+    /               reduce using rule 21 (str -> STR .)
+    EXP             reduce using rule 21 (str -> STR .)
+
+
+state 4
+
+    (0) S' -> stmt .
+
+
+
+state 5
+
+    (1) stmt -> assign .
+
+    $end            reduce using rule 1 (stmt -> assign .)
+
+
+state 6
+
+    (4) declare -> var . id
+    (5) declare -> var . assign
+    (18) id -> . ID
+    (6) assign -> . id = term
+    (7) assign -> . id = str
+
+    ID              shift and go to state 11
+
+    id                             shift and go to state 22
+    assign                         shift and go to state 21
+
+state 7
+
+    (12) term -> num .
+
+    +               reduce using rule 12 (term -> num .)
+    -               reduce using rule 12 (term -> num .)
+    *               reduce using rule 12 (term -> num .)
+    /               reduce using rule 12 (term -> num .)
+    EXP             reduce using rule 12 (term -> num .)
+    $end            reduce using rule 12 (term -> num .)
+
+
+state 8
+
+    (10) binop -> str . + str
+
+    +               shift and go to state 23
+
+
+state 9
+
+    (2) stmt -> declare .
+
+    $end            reduce using rule 2 (stmt -> declare .)
+
+
+state 10
+
+    (19) num -> NUM .
+
+    +               reduce using rule 19 (num -> NUM .)
+    -               reduce using rule 19 (num -> NUM .)
+    *               reduce using rule 19 (num -> NUM .)
+    /               reduce using rule 19 (num -> NUM .)
+    EXP             reduce using rule 19 (num -> NUM .)
+    $end            reduce using rule 19 (num -> NUM .)
+
+
+state 11
+
+    (18) id -> ID .
+
+    +               reduce using rule 18 (id -> ID .)
+    -               reduce using rule 18 (id -> ID .)
+    *               reduce using rule 18 (id -> ID .)
+    /               reduce using rule 18 (id -> ID .)
+    EXP             reduce using rule 18 (id -> ID .)
+    $end            reduce using rule 18 (id -> ID .)
+    =               reduce using rule 18 (id -> ID .)
+
+
+state 12
+
+    (22) var -> VAR .
+
+    ID              reduce using rule 22 (var -> VAR .)
+
+
+state 13
+
+    (6) assign -> id . = term
+    (7) assign -> id . = str
+    (11) term -> id .
+
+    =               shift and go to state 24
+    +               reduce using rule 11 (term -> id .)
+    -               reduce using rule 11 (term -> id .)
+    *               reduce using rule 11 (term -> id .)
+    /               reduce using rule 11 (term -> id .)
+    EXP             reduce using rule 11 (term -> id .)
+
+
+state 14
+
+    (20) exp -> EXP .
+
+    ID              reduce using rule 20 (exp -> EXP .)
+    NUM             reduce using rule 20 (exp -> EXP .)
+    STR             reduce using rule 20 (exp -> EXP .)
+
+
+state 15
+
+    (14) literal -> + .
+
+    ID              reduce using rule 14 (literal -> + .)
+    NUM             reduce using rule 14 (literal -> + .)
+    STR             reduce using rule 14 (literal -> + .)
+
+
+state 16
+
+    (16) literal -> * .
+
+    ID              reduce using rule 16 (literal -> * .)
+    NUM             reduce using rule 16 (literal -> * .)
+    STR             reduce using rule 16 (literal -> * .)
+
+
+state 17
+
+    (15) literal -> - .
+
+    ID              reduce using rule 15 (literal -> - .)
+    NUM             reduce using rule 15 (literal -> - .)
+    STR             reduce using rule 15 (literal -> - .)
+
+
+state 18
+
+    (17) literal -> / .
+
+    ID              reduce using rule 17 (literal -> / .)
+    NUM             reduce using rule 17 (literal -> / .)
+    STR             reduce using rule 17 (literal -> / .)
+
+
+state 19
+
+    (8) binop -> term literal . term
+    (11) term -> . id
+    (12) term -> . num
+    (13) term -> . binop
+    (18) id -> . ID
+    (19) num -> . NUM
+    (8) binop -> . term literal term
+    (9) binop -> . term exp term
+    (10) binop -> . str + str
+    (21) str -> . STR
+
+    ID              shift and go to state 11
+    NUM             shift and go to state 10
+    STR             shift and go to state 3
+
+    term                           shift and go to state 25
+    str                            shift and go to state 8
+    binop                          shift and go to state 26
+    num                            shift and go to state 7
+    id                             shift and go to state 27
+
+state 20
+
+    (9) binop -> term exp . term
+    (11) term -> . id
+    (12) term -> . num
+    (13) term -> . binop
+    (18) id -> . ID
+    (19) num -> . NUM
+    (8) binop -> . term literal term
+    (9) binop -> . term exp term
+    (10) binop -> . str + str
+    (21) str -> . STR
+
+    ID              shift and go to state 11
+    NUM             shift and go to state 10
+    STR             shift and go to state 3
+
+    term                           shift and go to state 28
+    str                            shift and go to state 8
+    binop                          shift and go to state 26
+    num                            shift and go to state 7
+    id                             shift and go to state 27
+
+state 21
+
+    (5) declare -> var assign .
+
+    $end            reduce using rule 5 (declare -> var assign .)
+
+
+state 22
+
+    (4) declare -> var id .
+    (6) assign -> id . = term
+    (7) assign -> id . = str
+
+    $end            reduce using rule 4 (declare -> var id .)
+    =               shift and go to state 24
+
+
+state 23
+
+    (10) binop -> str + . str
+    (21) str -> . STR
+
+    STR             shift and go to state 3
+
+    str                            shift and go to state 29
+
+state 24
+
+    (6) assign -> id = . term
+    (7) assign -> id = . str
+    (11) term -> . id
+    (12) term -> . num
+    (13) term -> . binop
+    (21) str -> . STR
+    (18) id -> . ID
+    (19) num -> . NUM
+    (8) binop -> . term literal term
+    (9) binop -> . term exp term
+    (10) binop -> . str + str
+
+    STR             shift and go to state 3
+    ID              shift and go to state 11
+    NUM             shift and go to state 10
+
+    term                           shift and go to state 30
+    binop                          shift and go to state 26
+    num                            shift and go to state 7
+    str                            shift and go to state 31
+    id                             shift and go to state 27
+
+state 25
+
+    (8) binop -> term literal term .
+    (8) binop -> term . literal term
+    (9) binop -> term . exp term
+    (14) literal -> . +
+    (15) literal -> . -
+    (16) literal -> . *
+    (17) literal -> . /
+    (20) exp -> . EXP
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for EXP resolved as shift
+    $end            reduce using rule 8 (binop -> term literal term .)
+    +               shift and go to state 15
+    -               shift and go to state 17
+    *               shift and go to state 16
+    /               shift and go to state 18
+    EXP             shift and go to state 14
+
+  ! +               [ reduce using rule 8 (binop -> term literal term .) ]
+  ! -               [ reduce using rule 8 (binop -> term literal term .) ]
+  ! *               [ reduce using rule 8 (binop -> term literal term .) ]
+  ! /               [ reduce using rule 8 (binop -> term literal term .) ]
+  ! EXP             [ reduce using rule 8 (binop -> term literal term .) ]
+
+    literal                        shift and go to state 19
+    exp                            shift and go to state 20
+
+state 26
+
+    (13) term -> binop .
+
+    +               reduce using rule 13 (term -> binop .)
+    -               reduce using rule 13 (term -> binop .)
+    *               reduce using rule 13 (term -> binop .)
+    /               reduce using rule 13 (term -> binop .)
+    EXP             reduce using rule 13 (term -> binop .)
+    $end            reduce using rule 13 (term -> binop .)
+
+
+state 27
+
+    (11) term -> id .
+
+    +               reduce using rule 11 (term -> id .)
+    -               reduce using rule 11 (term -> id .)
+    *               reduce using rule 11 (term -> id .)
+    /               reduce using rule 11 (term -> id .)
+    EXP             reduce using rule 11 (term -> id .)
+    $end            reduce using rule 11 (term -> id .)
+
+
+state 28
+
+    (9) binop -> term exp term .
+    (8) binop -> term . literal term
+    (9) binop -> term . exp term
+    (14) literal -> . +
+    (15) literal -> . -
+    (16) literal -> . *
+    (17) literal -> . /
+    (20) exp -> . EXP
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for EXP resolved as shift
+    $end            reduce using rule 9 (binop -> term exp term .)
+    +               shift and go to state 15
+    -               shift and go to state 17
+    *               shift and go to state 16
+    /               shift and go to state 18
+    EXP             shift and go to state 14
+
+  ! +               [ reduce using rule 9 (binop -> term exp term .) ]
+  ! -               [ reduce using rule 9 (binop -> term exp term .) ]
+  ! *               [ reduce using rule 9 (binop -> term exp term .) ]
+  ! /               [ reduce using rule 9 (binop -> term exp term .) ]
+  ! EXP             [ reduce using rule 9 (binop -> term exp term .) ]
+
+    literal                        shift and go to state 19
+    exp                            shift and go to state 20
+
+state 29
+
+    (10) binop -> str + str .
+
+    $end            reduce using rule 10 (binop -> str + str .)
+    +               reduce using rule 10 (binop -> str + str .)
+    -               reduce using rule 10 (binop -> str + str .)
+    *               reduce using rule 10 (binop -> str + str .)
+    /               reduce using rule 10 (binop -> str + str .)
+    EXP             reduce using rule 10 (binop -> str + str .)
+
+
+state 30
+
+    (6) assign -> id = term .
+    (8) binop -> term . literal term
+    (9) binop -> term . exp term
+    (14) literal -> . +
+    (15) literal -> . -
+    (16) literal -> . *
+    (17) literal -> . /
+    (20) exp -> . EXP
+
+    $end            reduce using rule 6 (assign -> id = term .)
+    +               shift and go to state 15
+    -               shift and go to state 17
+    *               shift and go to state 16
+    /               shift and go to state 18
+    EXP             shift and go to state 14
+
+    literal                        shift and go to state 19
+    exp                            shift and go to state 20
+
+state 31
+
+    (7) assign -> id = str .
+    (10) binop -> str . + str
+
+    $end            reduce using rule 7 (assign -> id = str .)
+    +               shift and go to state 23
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for + in state 25 resolved as shift
+WARNING: shift/reduce conflict for - in state 25 resolved as shift
+WARNING: shift/reduce conflict for * in state 25 resolved as shift
+WARNING: shift/reduce conflict for / in state 25 resolved as shift
+WARNING: shift/reduce conflict for EXP in state 25 resolved as shift
+WARNING: shift/reduce conflict for + in state 28 resolved as shift
+WARNING: shift/reduce conflict for - in state 28 resolved as shift
+WARNING: shift/reduce conflict for * in state 28 resolved as shift
+WARNING: shift/reduce conflict for / in state 28 resolved as shift
+WARNING: shift/reduce conflict for EXP in state 28 resolved as shift
